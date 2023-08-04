@@ -1,0 +1,47 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div class="blockcontent">
+{%if products%}
+<div class="fscont">
+{%for j in products%}
+<div class="prod">
+<div class="pic"><img src="{{ url_for('static', filename='images/prod/'+ j.pname+'.jpeg') }}" alt="product img"></div>
+<div class="name">{{j.pname}}</div>
+<div class="paq">
+    {{j.qty}}
+    {{j.unit}}
+</div>
+<div class="price">Rs. {{j.price}}</div>
+{%if j.stock>0%}
+<div class="atc">
+    <div class="button1">
+    <form action="{{ url_for('modifycart', prodid=j.id) }}" method="post">
+        <button class="btn" type="submit" name="action" value="add">
+            <i class="bi bi-plus"></i>
+        </button>
+    </form>
+    </div>
+    <div class="button2">
+    <form action="{{ url_for('modifycart', prodid=j.id) }}" method="post">
+        <button class="btn" type="submit" name="action" value="remove">
+            <i class="bi bi-dash"></i>
+        </button>
+    </form>
+    </div>
+    {%if j.id in d and d[j.id]%}
+    <div class="qty">{{ d[j.id]}}</div>
+    {%endif%}
+</div>
+{%else%}
+<div class="oof"><strong>out of stock!</strong></div>
+{%endif%}
+</div>
+{%endfor%}
+</div>
+{%else%}
+<span><b>Sorry,No such product :/<b></span>
+{%endif%}
+</div>
+{%endblock%}
+<link rel="stylesheet" href="static/css/fs.css">

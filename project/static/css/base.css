@@ -1,0 +1,21 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /*background-color: #f0f0f0;*/ 
+    padding: 10px 0;
+    z-index: 9999; 
+}
+
+.nav-item {
+    font-size:x-large;
+} 
+
+.flash {
+    margin-top: 130px;
+}
+
+html {
+    scroll-behavior: smooth;
+  }

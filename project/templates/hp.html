@@ -1,0 +1,64 @@
+{%extends 'base.html'%}
+{%block title%}
+home page
+{%endblock%}
+{% block stylesheet %}
+    
+    <link rel="stylesheet" href="static/css/hp.css">
+{% endblock %}
+{%block content%}
+<div class="blockcontent">
+{% for i in cate %}
+<div class="hpcatb">
+<div class="hpcat">
+    {%for j in i.products%}
+    {%if loop.index <= 5%}
+    <div class="prod">
+    <div class="pic"><img src="{{ url_for('static', filename='images/prod/'+ j.pname+'.jpeg') }}" alt="product img"></div>
+    <div class="name">{{j.pname}}</div>
+    <div class="paq">
+        {{j.qty}}
+        {{j.unit}}
+    </div>
+    <div class="price">Rs. {{j.price}}</div>
+    {%if j.stock>0%}
+    <div class="atc">
+        <div class="button1">
+        <form action="{{ url_for('modifycart', prodid=j.id) }}" method="post">
+            <button class="btn" type="submit" name="action" value="add">
+                ADD
+            </button>
+        </form>
+        </div>
+        <div class="button2">      
+        <form action="{{ url_for('modifycart', prodid=j.id) }}" method="post">
+            <button class="btn" type="submit" name="action" value="remove">    
+            REMOVE
+        </button>
+        </form>
+        </div>
+        {%if j.id in d and d[j.id]>0%}
+        <div class="qty">{{ d[j.id] }}</div>
+        {%endif%}
+    </div> 
+    {%else%}
+    <div class="oof"><strong>out of stock!</strong></div>
+    {%endif%}   
+    </div>
+    {%endif%}
+    {%endfor%}
+    <div class="end">
+        <button class="btn more">
+            {% set url_params = {'category': i.cname, 'price': None, 'expiry': None} %}
+                    <a class="fromddi" href="{{ url_for('fsearch', **url_params) }}">
+                      More
+                    </a> 
+        </button>
+        <div class="cn">{{i.cname}}</div>
+    </div>
+</div>
+</div>
+{%endfor%}
+</div>
+{%endblock%}
+
