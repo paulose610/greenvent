@@ -1,4 +1,4 @@
------set up a virtual env---
+-----set up a virtual machine-----
 
 
 -----Install all dependencies through 'pip install -r req.txt'-----
