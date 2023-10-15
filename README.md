@@ -1,4 +1,4 @@
-# m1project
+#project
 GreenVent    --a prototype grocery store website
 backend      --python flask framework
 frontend     --html,css(flex-box)
