@@ -1,0 +1,86 @@
+{%extends 'base.html'%}
+
+{%block content%}
+        <div class="mancont">
+          <h2>Edit</h2>
+            <div class="fb1">
+                <div class="lbl"><strong>category</strong></div>
+                <form class="row gy-2 gx-3 align-items-center" action="{{url_for('managecat')}}" method="post">
+                    <div class="col-auto">
+                      <label class="visually-hidden" for="autoSizingInput">Name</label>
+                      <input type="text" class="form-control" id="autoSizingInput" autocomplete=False placeholder="name" name="cname">
+                    </div>
+                    <div class="col-auto">
+                      <label class="visually-hidden" for="autoSizingInputGroup">newname</label>
+                        <input type="text" class="form-control" id="autoSizingInputGroup" autocomplete=False placeholder="new name" name="cnewname">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary" name="action" value="modify">Modify</button>
+                    </div>
+                    <div class="col-auto">
+                      <button type="submit" class="btn btn-primary" name="action" value="add">ADD</button>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary" name="action" value="remove">REMOVE</button>
+                    </div>
+                    <div class="col-auto">
+                      <button type="submit" class="btn btn-primary btn-danger" name="action" value="clear">Clear</button>
+                    </div>
+                  </form>
+            </div>    
+            <div class="fb2">
+                <div class="lbl"><strong>product</strong></div>
+                <form class="row gy-2 gx-3 align-items-center" action="/manage" method="post">
+                    <div class="col-auto">
+                      <label class="" for="autoSizingInput">Name</label>
+                      <input type="text" class="form-control" id="autoSizingInput" placeholder="name" name="pname"  value="{{request.args.get('prodname') or 'example name'}}" required>
+                    </div>
+                    <div class="col-auto">
+                      <label class="" for="autoSizingInputGroup">newname</label>
+                        <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="new name" name="pnewname">
+                    </div>
+                    <div class="col-auto">
+                        <label class="" for="autoSizingInputGroup">category</label>
+                        <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="category" name="cat" value="{{request.args.get('cat') or 'example category'}}" required>
+                    </div>
+                    <div class="col-auto">
+                        <label class="" for="autoSizingInputGroup">price</label>
+                        <input type="number" class="form-control" id="autoSizingInputGroup" placeholder="price" name="price"  value="{{request.args.get('price')}}" required min="0">
+                    </div>
+                    <div class="col-auto">
+                        <label class="" for="autoSizingInputGroup">qty</label>
+                        <input type="number" class="form-control" id="autoSizingInputGroup" placeholder="qty" name="qty"  value="{{request.args.get('qty')}}" required min="0">
+                    </div>
+                    <div class="col-auto">
+                        <label class="" for="autoSizingInputGroup">unit</label>
+                        <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="unit" name="unit"  value="{{request.args.get('unit') or 'example unit'}}" required>
+                    </div>
+                    <div class="col-auto">
+                        <label class="" for="autoSizingInputGroup">stock</label>
+                        <input type="number" class="form-control" id="autoSizingInputGroup" placeholder="stock" name="stock"  value="{{request.args.get('stock')}}" required min="0">
+                    </div>
+                    <div class="col-auto">
+                        <label class="" for="autoSizingInputGroup">offer</label>
+                        
+                        <input type="number" class="form-control" id="autoSizingInputGroup" placeholder="offer in %" name="offer"  value="{{request.args.get('offer')}}" required min="0">
+    
+                      </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary" name="action" value="modifyp">Modify</button>
+                    </div>
+                    <div class="col-auto">
+                      <button type="submit" class="btn btn-primary" name="action" value="addp">ADD</button>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary" name="action" value="removep">REMOVE</button>
+                    </div>
+                  </form>
+            </div>
+        </div>
+        <div class="mansum">
+          <h2>Graph</h2>
+          <div class="graph-container" style="width: 80%; margin: auto;">
+            <img src="data:image/png;base64,{{ img }}" alt="Sample Bar Chart">
+          </div>
+        </div>
+{%endblock%}

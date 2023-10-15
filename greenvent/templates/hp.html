@@ -1,0 +1,150 @@
+{%extends 'base.html'%}
+{%block title%}
+home page
+{%endblock%}
+{% block stylesheet %}
+    
+    <link rel="stylesheet" href="static/css/hp.css">
+{% endblock %}
+{%block content%}
+<div class="blockcontent">
+<div class="hpcatb">
+    <div class="hpoff">
+        
+    {%for j in offers%}
+    {%if j.stock>0%}
+    <div class="prod">
+
+        <div class="pic"><img src="{{ url_for('static', filename='images/prod/'+ j.pname+'.jpeg') }}" alt="product img"></div>
+        <div class="pd">
+        <div class="name">{{j.pname}}</div>
+        <div class="paq">
+            {{j.qty}}
+            {{j.unit}}
+        </div>
+        <div class="price"><s>Rs. {{j.price}}</s></div>
+        <div class="op">Offer Price : Rs. {{j.price*(1-j.offer/100)}}</div>  
+        </div>
+    {%if current_user.is_authenticated%}
+    {% if current_user.role=="User"%}   
+    <div class="atc">
+        <div class="button1">
+        <form action="{{ url_for('modifycart', prodid=j.id) }}" method="post">
+            <button class="btn" type="submit" name="action" value="add">
+                ADD
+            </button>
+        </form>
+        </div>
+        {%if j.id in d and d[j.id]>0%}
+        <div class="button2">      
+        <form action="{{ url_for('modifycart', prodid=j.id) }}" method="post">
+            <button class="btn" type="submit" name="action" value="remove">    
+                REMOVE
+            </button>
+        </form>
+        </div>
+        
+        <div class="qty">{{ d[j.id] }}</div>
+        {%endif%}
+    </div>
+    {%else%}    
+            <a href="{{ url_for('managecat', prodname=j.pname,qty=j.qty,unit=j.unit,price=j.price,stock=j.stock,cat=ocn[j.id],offer=j.offer) }}">
+                <button class="btn btn-block-lg btn-primary">
+                    edit
+                </button>
+            </a>
+    {%endif%}
+    {%endif%}
+    </div>
+    {%endif%}
+    {%endfor%}  
+    <div class="end">
+        <button class="btn more">
+                    <a class="fromddi" href="{{url_for('offers')}}">
+                      More
+                    </a> 
+        </button>
+        <div class="cn">Offers</div>
+    </div>
+    </div>
+
+{% for i in cate %}
+
+<div class="hpcat">
+    {%for j in i.products%}
+    {%if loop.index <= 5%}
+    <div class="prod">
+    <div class="pic"><img src="{{ url_for('static', filename='images/prod/'+ j.pname+'.jpeg') }}" alt="product img"></div>
+    <div class="pd">
+    <div class="name">{{j.pname}}</div>
+    <div class="paq">
+        {{j.qty}}
+        {{j.unit}}
+    </div>
+    {%if j.offer and j.stock>0%}
+    <div class="price"><s>Rs. {{j.price}}</s></div>
+    <div class="op">Offer Price : Rs. {{j.price*(1-j.offer/100)}}</div>
+    {%else%}
+    <div class="price">Rs. {{j.price}}</div>
+    {%endif%}
+    </div>
+    {%if current_user.is_authenticated%}
+    {% if j.stock>0 and current_user.role=="User"%}
+    <div class="atc">
+        <div class="button1">
+        <form action="{{ url_for('modifycart', prodid=j.id) }}" method="post">
+            <button class="btn" type="submit" name="action" value="add">
+                ADD
+            </button>
+        </form>
+        </div>
+        {%if j.id in d and d[j.id]>0%}
+        <div class="button2">      
+        <form action="{{ url_for('modifycart', prodid=j.id,catid=j.catid) }}" method="post">
+            <button class="btn" type="submit" name="action" value="remove">    
+                REMOVE
+            </button>
+        </form>
+        </div>
+
+        
+        <div class="qty">{{ d[j.id] }}</div>
+        {%endif%}
+    </div> 
+    {% elif j.stock<=0 and current_user.role=="User"%}
+    <div class="oof"><strong>out of stock!</strong></div>
+    {%elif current_user.role=='manager'%}
+    {%if j.stock<=0%}
+    <div class="oof"><strong>out of stock!</strong></div>
+    {%endif%}
+        <button class="btn btn-block-lg">    
+            <a href="{{ url_for('managecat', prodname=j.pname,qty=j.qty,unit=j.unit,price=j.price,stock=j.stock,cat=i.cname,offer=j.offer) }}">
+                <button class="btn btn-block-lg btn-primary"> 
+                    edit  
+                </button>
+            </a>
+        </button>
+    {%endif%}    
+    {%else%} 
+       {%if j.stock<=0%}
+        <div class="oof"><strong>out of stock!</strong></div>
+       {%endif%}   
+    {%endif%}  
+    </div>
+    {%endif%}
+    {%endfor%}
+    <div class="end">
+        <button class="btn more">
+            {% set url_params = {'category': i.cname, 'price': None, 'expiry': None} %}
+                    <a class="fromddi" href="{{ url_for('fsearch', **url_params) }}">
+                      More
+                    </a> 
+        </button>
+        <div class="cn">{{i.cname}}</div>
+    </div>
+</div>
+
+{%endfor%}
+</div>
+{%endblock%}
+

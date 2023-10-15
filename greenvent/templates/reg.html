@@ -1,0 +1,34 @@
+{%extends 'enter.html'%}
+{%block title%}
+register-page
+{%endblock%}
+
+
+{%block content%}
+
+<div class="container">
+<form method="POST" class="form-register" style="color: #2e4d0b">
+    {{form.hidden_tag()}}
+
+    {{form.uname.label()}}
+    {{form.uname(class='form-control', placeholder='username')}}
+
+    {{form.password1.label()}}
+    {{form.password1(class='form-control', placeholder='password')}}
+
+    {{form.password2.label()}}
+    {{form.password2(class='form-control', placeholder='confirm')}}
+
+    {{form.mancode.label()}}
+    {{form.mancode(class='form-control', placeholder='manager-code')}}
+
+    <br>
+
+    {{form.submit(class='btn btn-block btn-primary')}}
+    <div class="checkbox mb-3">
+        <br>
+        <a class="btn btn-block btn-secondary" href="{{url_for('login')}}">already registered,login</a>
+    </div>
+</form>       
+</div>
+{% endblock %}

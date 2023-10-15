@@ -1,0 +1,27 @@
+{%extends 'enter.html'%}
+{%block title%}
+login-page
+{%endblock%}
+
+
+{%block content%}
+
+<div class="container">
+<form method="POST" class="form-signin" style="color: #2e4d0b">
+    <h3>Welcome to greenvend, please login</h3>
+    {{form.hidden_tag()}}
+    
+    {{form.uname.label()}}
+    {{form.uname(class='form-control', placeholder='username')}}
+    
+    {{form.password.label()}}
+    {{form.password(class='form-control', placeholder='password')}}
+    <br>
+    {{form.submit(class='btn btn-block btn-primary')}}
+    <div class="checkbox mb-3">
+        <br>
+        <a class="btn btn-block btn-secondary" href="{{url_for('reg')}}">not yet registered ,register</a>
+    </div>
+</form>       
+</div>
+{% endblock %}

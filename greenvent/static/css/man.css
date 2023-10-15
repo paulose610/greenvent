@@ -1,0 +1,41 @@
+.mancont{
+    background-color: white;
+    margin-top: 200px;
+    border-radius: 10px;
+    max-width: 1500px;
+    margin-left: 100px;
+    padding: 30px;
+
+}
+.mansum{
+    background-color: white;
+    margin-top: 200px;
+    border-radius: 10px;
+    max-width: 1500px;
+    margin-left: 100px;
+    padding: 30px;
+    display: flex;
+}
+.graph_container {
+    flex: 1;
+}
+
+.mancont .fb1,.fb2 {
+    margin: 20px;
+    margin-left: 70px;
+    border: 1px solid grey;
+    max-height: 700px;
+    padding: 10px;
+    background-color: antiquewhite;
+    border-radius: 10px;
+    max-width: 1200px;
+}
+.mancont .fb1 form {
+    display: flex;
+    justify-content:flex-start;
+}
+.mancont .fb2 form {
+    display: flex;
+    justify-content: flex-start;
+}
+

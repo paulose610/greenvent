@@ -1,0 +1,110 @@
+.blockcontent{
+    margin-top: 60px;
+}
+
+.hpcatb{
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.hpcat, .hpoff {
+    background-color: azure;
+    display: flex;
+    margin: 10px;
+    border-radius: 10px;
+    font-size:larger;
+}
+
+.hpcat .prod {
+    border: 3px solid grey;
+    text-align: center;
+    border: 0px solid black;
+    border-radius:10px;
+    width: 400px;
+    height: 400px;
+    /*display: inline-block;*/ 
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgb(226, 236, 236);
+}
+.hpoff .prod {
+    border: 3px solid grey;
+    text-align: center;
+    border: 0px solid black;
+    border-radius:10px;
+    width: 400px;
+    height: 400px;
+    /*display: inline-block;*/ 
+    margin: 10px;
+    background-color: rgb(226, 236, 236);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+ .hpcat .pic img{
+    max-width: 100%; 
+}
+.hpoff .pic img{
+    max-width: 100%; 
+}
+
+
+
+.end{
+    text-align: center;
+    height: 350px;
+    width: 400px;
+    font-size: larger;
+    font-weight: 100;
+    padding-top: 160px;
+    padding-bottom: 160px;
+}
+
+.hpcat .prod .atc{
+    display: flex;
+    flex-wrap: wrap;
+}
+.hpoff .prod .atc{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.hpcat .prod .atc .button1,.button2,.qty {
+    border: 1px solid grey;
+    background-color: rgb(255, 255, 255);
+    flex-grow: 1;
+    flex-basis: 0;
+    border-radius: 5px;
+}
+.hpoff .prod .atc .button1,.button2,.qty {
+    border: 1px solid grey;
+    background-color: rgb(255, 255, 255);
+    flex-grow: 1;
+    flex-basis: 0;
+    border-radius: 5px;
+}
+
+.hpcat button {
+    width: 100%;
+}
+.hpoff button {
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,64 @@
+{%extends 'base.html'%}
+{%block content%}
+<div class="cartcont">
+    
+        <h2>your Cart</h2>
+        <br>
+    <table class="table table-hover table-light">
+        <thead>
+            <tr>
+                <th scope="col">PRODUCT</th>
+                <th scope="col">QUANTITY</th>
+                <th scope="col">UNIT</th>
+                <th scope="col">NO</th>
+                <th scope="col">PRICE</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for i in cart%}
+            {%if i.no>0%}
+                <tr>
+                    <td>{{i.pname}}</td>
+                    <td>{{i.qty*i.no}}</td>
+                    <td>{{i.unit}}</td>
+                    <td>{{i.no}}</td>
+                    {%if i.pname in d.keys()%}
+                    <td>Rs {{i.no*d[i.pname]}}</td>
+                    {%else%}
+                    <td>Rs {{i.no*i.price}}</td>
+                    {%endif%}
+                    <td>
+                        <div class="ad">
+                        <form action="{{ url_for('modifycart', prodid=i.Pid) }}" method="post">
+                            <button class="btn btn-outline btn-success" type="submit" name="action" value="add">    
+                            <i class="bi bi-plus"></i>
+                        </button>
+                        </form>
+                        <form action="{{ url_for('modifycart', prodid=i.Pid) }}" method="post">
+                            <button class="btn btn-outline btn-danger" type="submit" name="action" value="remove">    
+                            <i class="bi bi-dash"></i>
+                        </button>
+                        </form>
+                        </div>
+                    </td>
+                </tr>
+            {%endif%}    
+            {%endfor%}   
+        </tbody>
+    </table>
+    <div class="cbt">
+          {%if tp %}  
+          <div class="tp">Total Amount:  Rs {{tp}}</div>
+          <div class="co">
+          <form action="{{ url_for('checkout') }}" method="post">
+            <button type="submit" class="btn btn-lg btn-block btn-success cobtn">Checkout</a>
+          </form>
+          </div>
+          {%else%}
+          <div class="tp">your cart is empty!</div>
+          {%endif%}
+        </div>
+    </div>
+</div>    
+{%endblock%}
