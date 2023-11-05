@@ -22,7 +22,7 @@ class  RegisterForm(FlaskForm):
 class LoginForm(FlaskForm):
         
     uname=StringField(label='User Name:',validators=[DataRequired()])
-    password=PasswordField(label='password:', validators=[DataRequired()])
+    password=PasswordField(label='Password:', validators=[DataRequired()])
     submit=SubmitField(label='login')
 
 
